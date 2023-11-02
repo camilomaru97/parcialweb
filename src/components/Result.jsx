@@ -26,6 +26,7 @@ const fig = [
           <polygon points="50,10 10,50 50,90 90,50" fill="#0685A5" />
         </svg>
   }
+
 ]
 
 export const Result = ({ data, results}) => {
@@ -33,8 +34,6 @@ export const Result = ({ data, results}) => {
   console.log(data)
   console.log(results)
   console.log(results[0])
-
-  
 
   return (
     <div> 
@@ -48,13 +47,27 @@ export const Result = ({ data, results}) => {
                   {question.options.map((option, index) => (
                     
                     <button
-                      style={{textAlign: "left"} }
-                      // className={selectedOption === option ? "selected" : ""}
-                      key={option}
-                    >
-                      {fig[index].svg}
-                      {option}
-                    </button>
+                  key={option}
+                  style={{
+                    backgroundColor:
+                      option === question.answer
+                        ? results.includes(option)
+                          ? "green" // Correcto
+                          : ""
+                        : results.includes(option)
+                        ? "#C70039" // Incorrecto
+                        : "",
+                  }}
+                >
+                  {fig[index].svg}                  
+                  {option}
+                  {results.includes(option) && option !== question.answer && (
+                    <span style={{ color: "white" }}>
+                      {" "}
+                      (Correcta: {question.answer})
+                    </span>
+                  )}
+                </button>
                     
                   ))
                 }
@@ -64,3 +77,4 @@ export const Result = ({ data, results}) => {
           </div>
   )
 }
+
