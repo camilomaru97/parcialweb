@@ -31,9 +31,9 @@ const fig = [
 
 export const Result = ({ data, results}) => {
 
-  console.log(data)
-  console.log(results)
-  console.log(results[0])
+  // console.log(data)
+  // console.log(results)
+  // console.log(results[0])
 
   return (
     <div> 

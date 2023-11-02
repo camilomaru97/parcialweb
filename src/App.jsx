@@ -72,8 +72,10 @@ export const App = () => {
   }, [seconds, setQuestion]);
 
   const hanldeInit = () => {
-    const slice = data.slice(0, 1)
-    setQuestion(slice)
+    const slice = data.slice(0, 1);
+    setQuestion(slice);
+    const startgame = new Date().getTime().toString();
+    handleSendResults(startgame);
   }
 
   const handleNext = () => {
@@ -117,9 +119,55 @@ export const App = () => {
     setisResultDone(null)
   }
 
-  const handleSendResults = () => {
-    console.log('Enviando')
-  }
+  // const handleSendResults = (e) => {
+  //   console.log('Enviando')
+    
+  // }
+
+  const handleSendResults = async (initialGameTime) => {
+    try {
+      // Realiza una solicitud a un servicio externo para obtener la dirección IP pública
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      if (ipResponse.ok) {
+        const ipData = await ipResponse.json();
+        const ipUser = ipData.ip;
+        
+        // Crear un objeto con los datos a enviar, incluyendo initial_game e ip_user
+        const resultsData = {
+          initial_game: new Date().getTime().toString(),
+          //initial_game: initialGameTime,
+          end_game: new Date().getTime().toString(),
+          usuario: 2, // Asigna el valor adecuado
+          score: score,
+          ip_user: ipUser, // Utiliza la dirección IP obtenida del servicio externo
+        };
+        console.log(resultsData)
+  
+        // Realizar una solicitud POST al servidor para enviar los resultados
+        const response = await fetch('http://localhost:3001/api/exam', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(resultsData),
+        });
+  
+        if (response.ok) {
+          // Los resultados se enviaron correctamente, puedes realizar acciones adicionales si es necesario
+          console.log('Resultados enviados con éxito');
+        } else {
+          // Ocurrió un error al enviar los resultados
+          console.error('Error al enviar los resultados');
+        }
+      } else {
+        console.error('Error al obtener la dirección IP');
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
+  };
+  
+  
   
   const handleGetAnswer = (e, id) => {
     e.preventDefault();
