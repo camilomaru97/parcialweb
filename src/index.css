@@ -1,0 +1,95 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  text-align: center;
+  margin-bottom: -.5rem;
+}
+
+.box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button{
+  flex: 45%;
+  height: 70px;
+  border:1px solid #afb2b6;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 1.4rem;
+  gap: 1rem;
+  margin: 0.2rem;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+
+button:last-child{
+  border-bottom: 1px solid #afb2b6;
+  margin-bottom: 1rem;
+}
+
+h2{
+  flex: 100%;
+  text-align: center;
+}
+
+button:hover{
+  background-color: #E0E0E0;
+}
+
+.selected{
+  background-color: #9dc1eb;
+}
+
+.btn-next{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-start{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btn-end{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btn-finish{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btn-results{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
