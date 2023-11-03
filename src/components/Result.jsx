@@ -1,3 +1,4 @@
+
 /* eslint-disable react/prop-types */
 const fig = [
   {
@@ -29,11 +30,7 @@ const fig = [
 
 ]
 
-export const Result = ({ data, results}) => {
-
-  // console.log(data)
-  // console.log(results)
-  // console.log(results[0])
+export const Result = ({ data, results }) => {
 
   return (
     <div> 
@@ -72,8 +69,9 @@ export const Result = ({ data, results}) => {
                   ))
                 }
                 </div>
-              );
-            })}
+                
+                );
+              })}
           </div>
   )
 }

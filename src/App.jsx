@@ -3,6 +3,8 @@ import { Result } from "./components/Result";
 
 export const App = () => {
 
+
+
 	const [data, setData] = useState([])
   const [question, setQuestion] = useState()
   const [correctAnswer, setCorrectAnswer] = useState()
@@ -15,8 +17,7 @@ export const App = () => {
   const [count, setCount] = useState(0)
   const [seconds, setSeconds] = useState(300);
   const [minutes, setMinutes] = useState(5);
-
-  
+  const [name, setName] = useState('')
   
   const fig = [
     {
@@ -74,8 +75,8 @@ export const App = () => {
   const hanldeInit = () => {
     const slice = data.slice(0, 1);
     setQuestion(slice);
-    const startgame = new Date().getTime().toString();
-    handleSendResults(startgame);
+    
+    
   }
 
   const handleNext = () => {
@@ -106,6 +107,8 @@ export const App = () => {
 
   const handleResults = () => {
     setisResultDone(true)
+    const startgame = new Date().getTime();
+    handleSendResults(startgame);
   }
 
   const handleReset = () => {
@@ -125,6 +128,7 @@ export const App = () => {
   // }
 
   const handleSendResults = async (initialGameTime) => {
+    console.log(initialGameTime)
     try {
       // Realiza una solicitud a un servicio externo para obtener la dirección IP pública
       const ipResponse = await fetch('https://api.ipify.org?format=json');
@@ -134,15 +138,13 @@ export const App = () => {
         
         // Crear un objeto con los datos a enviar, incluyendo initial_game e ip_user
         const resultsData = {
-          initial_game: new Date().getTime().toString(),
-          //initial_game: initialGameTime,
-          end_game: new Date().getTime().toString(),
-          usuario: 2, // Asigna el valor adecuado
+          //initial_game: new Date().getTime(),
+          initial_game: initialGameTime,
+          end_game: new Date().getTime(),
           score: score,
-          ip_user: ipUser, // Utiliza la dirección IP obtenida del servicio externo
+          ip_user: ipUser,
+          name: `usuario${new Date().getDate().toString()}` // Utiliza la dirección IP obtenida del servicio externo
         };
-        console.log(resultsData)
-  
         // Realizar una solicitud POST al servidor para enviar los resultados
         const response = await fetch('http://localhost:3001/api/exam', {
           method: 'POST',
@@ -241,6 +243,8 @@ export const App = () => {
             results={results}
             data={data}
             handleSendResults={handleSendResults}
+            setName={setName}
+            name={name}
           />
         }
 

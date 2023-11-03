@@ -1,8 +1,6 @@
-body{
-  font-family: 'Montserrat', sans-serif;
-}
 
-.container{
+
+.container_exam{
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
@@ -10,7 +8,7 @@ body{
   align-items: center;
 }
 
-main {
+.container_exam main {
   width: 80%;
   margin: auto;
   display: flex;
